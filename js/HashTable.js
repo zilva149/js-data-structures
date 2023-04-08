@@ -12,6 +12,10 @@ export class HashTable {
   }
 
   set(key, value) {
+    if (!this.data.length) {
+      return undefined;
+    }
+
     const address = this.#hash(key);
 
     if (!this.data[address]) {
@@ -42,5 +46,59 @@ export class HashTable {
     }
 
     return undefined;
+  }
+
+  keys() {
+    if (!this.data.length) {
+      return undefined;
+    }
+
+    const keys = [];
+
+    for (let i = 0; i < this.data.length; i++) {
+      if (this.data[i]) {
+        for (let j = 0; j < this.data[i].length; j++) {
+          keys.push(this.data[i][j][0]);
+        }
+      }
+    }
+
+    return keys;
+  }
+
+  values() {
+    if (!this.data.length) {
+      return undefined;
+    }
+
+    const values = [];
+
+    for (let i = 0; i < this.data.length; i++) {
+      if (this.data[i]) {
+        for (let j = 0; j < this.data[i].length; j++) {
+          values.push(this.data[i][j][1]);
+        }
+      }
+    }
+
+    return values;
+  }
+
+  entries() {
+    if (!this.data.length) {
+      return undefined;
+    }
+
+    const entries = [];
+
+    for (let i = 0; i < this.data.length; i++) {
+      if (this.data[i]) {
+        for (let j = 0; j < this.data[i].length; j++) {
+          entries.push([this.data[i][j][0], this.data[i][j][1]]);
+        }
+      }
+    }
+
+    return entries;
   }
 }
