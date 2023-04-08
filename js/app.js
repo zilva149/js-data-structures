@@ -7,4 +7,5 @@ const arr = new MyArray();
 const hashTable = new HashTable(50);
 
 console.log(arr);
+hashTable.set("apple", "red");
 console.log(hashTable);
