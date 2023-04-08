@@ -3,7 +3,7 @@ export class HashTable {
     this.data = new Array(size);
   }
 
-  _hash(key) {
+  #hash(key) {
     let hash = 0;
     for (let i = 0; i < key.length; i++) {
       hash = (hash + key.charCodeAt(i) * i) % this.data.length;
@@ -12,7 +12,7 @@ export class HashTable {
   }
 
   set(key, value) {
-    const address = this._hash(key);
+    const address = this.#hash(key);
 
     if (!this.data[address]) {
       this.data[address] = [];
@@ -23,10 +23,17 @@ export class HashTable {
   }
 
   get(key) {
-    const address = this._hash(key);
+    const address = this.#hash(key);
+    const bucket = this.data[address];
 
-    if (!this.data[address]) {
-      return undefined;
+    if (bucket) {
+      for (let i = 0; i < bucket.length; i++) {
+        if (bucket[i][0] === key) {
+          return bucket[i][1];
+        }
+      }
     }
+
+    return undefined;
   }
 }

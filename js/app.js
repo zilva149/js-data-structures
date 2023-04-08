@@ -8,4 +8,7 @@ const hashTable = new HashTable(50);
 
 console.log(arr);
 hashTable.set("apple", "red");
-console.log(hashTable);
+hashTable.set("dog", "medutis");
+hashTable.set("food", ["pork chops", "eggs"]);
+console.log(hashTable.get("food"));
+console.log(hashTable.data);
