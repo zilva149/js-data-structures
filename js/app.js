@@ -11,5 +11,6 @@ const linkedList = new LinkedList(10);
 linkedList.append(5);
 linkedList.append(16);
 linkedList.prepend(30);
+linkedList.prepend(14);
 console.log(linkedList);
-console.log(linkedList.toString());
+console.log(linkedList.toArray());

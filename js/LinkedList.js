@@ -1,3 +1,5 @@
+import { Node } from "./children/Node.js";
+
 export class LinkedList {
   constructor(value) {
     this.head = {
@@ -9,26 +11,40 @@ export class LinkedList {
   }
 
   append(value) {
-    this.tail.next = {
-      value: value,
-      next: null,
-    };
+    const newNode = new Node(value);
 
-    this.tail = this.tail.next;
-
+    this.tail.next = newNode;
+    this.tail = newNode;
     this.length++;
+
+    return this;
   }
 
   prepend(value) {
-    this.head = {
-      value: value,
-      next: this.head,
-    };
+    const newNode = new Node(value);
 
+    newNode.next = this.head;
+    this.head = newNode;
     this.length++;
+
+    return this;
   }
+
+  insert(index, value) {}
 
   toString() {
     return JSON.stringify(this);
+  }
+
+  toArray() {
+    let values = [];
+    let currentNode = this.head;
+
+    while (currentNode !== null) {
+      values.push(currentNode.value);
+      currentNode = currentNode.next;
+    }
+
+    return values;
   }
 }
