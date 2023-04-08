@@ -30,7 +30,64 @@ export class LinkedList {
     return this;
   }
 
-  insert(index, value) {}
+  insert(index, value) {
+    if (index > this.length) {
+      throw new Error(`Index: '${index}' does not exist`);
+    }
+
+    if (index === this.length) {
+      return this.append(value);
+    }
+
+    if (index === 0) {
+      return this.prepend(value);
+    }
+
+    const newNode = new Node(value);
+
+    let parentNode = this.#traverseLinkedList(index - 1);
+    let pointerNode = parentNode.next;
+
+    newNode.next = pointerNode;
+    parentNode.next = newNode;
+    this.length++;
+
+    return this;
+  }
+
+  delete(index) {
+    if (index > this.length - 1) {
+      throw new Error(`Index: '${index}' does not exist`);
+    }
+
+    const parentNode = this.#traverseLinkedList(index - 1);
+    const unwantedNode = parentNode.next;
+
+    parentNode.next = unwantedNode.next;
+    this.length--;
+    return this;
+  }
+
+  get(index) {
+    if (index > this.length - 1) {
+      return undefined;
+    }
+
+    const node = this.#traverseLinkedList(index);
+    return node.value;
+  }
+
+  #traverseLinkedList(index) {
+    let currentNode = this.head;
+
+    for (let i = 0; i <= index; i++) {
+      if (i === index) {
+        return currentNode;
+      }
+
+      currentNode = currentNode.next;
+    }
+  }
 
   toString() {
     return JSON.stringify(this);
