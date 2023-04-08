@@ -17,6 +17,13 @@ export class HashTable {
     if (!this.data[address]) {
       this.data[address] = [];
     }
+
+    for (let i = 0; i < this.data[address].length; i++) {
+      if (this.data[address][i][0] === key) {
+        throw new Error(`Key: '${key}' already exists`);
+      }
+    }
+
     this.data[address].push([key, value]);
 
     return this.data;
