@@ -1,3 +1,5 @@
+import { timeStamp } from "console";
+
 export class MyArray {
   constructor() {
     this.length = 0;
@@ -16,17 +18,37 @@ export class MyArray {
     return this.data[this.length - 1];
   }
 
-  push(item) {}
+  push(item) {
+    this.data[this.length] = item;
+    this.length++;
+  }
 
-  pop() {}
+  pop() {
+    const lastItem = this.data[this.length - 1];
+    delete this.data[this.length - 1];
+    this.length--;
+    return lastItem;
+  }
 
-  delete(index) {}
+  delete(index) {
+    const item = this.data[index];
+    delete this.data[index];
+    this.#shiftItemsLeft(index);
+    return item;
+  }
 
   unshift(item) {}
 
   shift() {}
 
-  shiftItemsLeft(index) {}
+  #shiftItemsLeft(index) {
+    for (let i = index; i < this.length - 1; i++) {
+      this.data[i] = this.data[i + 1];
+    }
 
-  shiftItemsRight(index) {}
+    delete this.data[this.length - 1];
+    this.length--;
+  }
+
+  #shiftItemsRight(index) {}
 }
