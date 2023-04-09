@@ -1,8 +1,8 @@
-import { Node } from "./children/Node.js";
+import { DoublyNode } from "./children/DoublyNode.js";
 
-export class LinkedList {
+export class DoublyLinkedList {
   constructor(value) {
-    this.head = new Node(value);
+    this.head = new DoublyNode(value);
     this.tail = this.head;
     this.length = 1;
   }
