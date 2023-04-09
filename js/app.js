@@ -12,4 +12,8 @@ const linkedList = new LinkedList(0);
 const doublyLinkedList = new DoublyLinkedList(0);
 const myQueue = new Queue();
 
+myQueue.enqueue("Zilva");
+myQueue.enqueue("Monika");
+myQueue.enqueue("Tomas");
+console.log(myQueue.lookup(2));
 console.log(myQueue);
