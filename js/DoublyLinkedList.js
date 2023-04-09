@@ -8,8 +8,9 @@ export class DoublyLinkedList {
   }
 
   append(value) {
-    const newNode = new Node(value);
+    const newNode = new DoublyNode(value);
 
+    newNode.prev = this.tail;
     this.tail.next = newNode;
     this.tail = newNode;
     this.length++;
@@ -18,8 +19,9 @@ export class DoublyLinkedList {
   }
 
   prepend(value) {
-    const newNode = new Node(value);
+    const newNode = new DoublyNode(value);
 
+    this.head.prev = newNode;
     newNode.next = this.head;
     this.head = newNode;
     this.length++;
@@ -40,13 +42,15 @@ export class DoublyLinkedList {
       return this.prepend(value);
     }
 
-    const newNode = new Node(value);
+    const newNode = new DoublyNode(value);
 
-    let parentNode = this.#traverseLinkedList(index - 1);
-    let pointerNode = parentNode.next;
+    const pointerNode = this.#traverseLinkedList(index);
+    const parentNode = pointerNode.prev;
 
     newNode.next = pointerNode;
+    pointerNode.prev = newNode;
     parentNode.next = newNode;
+    newNode.prev = parentNode;
     this.length++;
 
     return this;
@@ -57,10 +61,18 @@ export class DoublyLinkedList {
       throw new Error(`Index: '${index}' does not exist`);
     }
 
-    const parentNode = this.#traverseLinkedList(index - 1);
-    const unwantedNode = parentNode.next;
+    const unwantedNode = this.#traverseLinkedList(index);
+    const parentNode = unwantedNode.prev;
+    const pointerNode = unwantedNode.next;
 
-    parentNode.next = unwantedNode.next;
+    if (!parentNode) {
+      pointerNode.prev = null;
+      this.head = pointerNode;
+    } else {
+      parentNode.next = pointerNode;
+      pointerNode.prev = parentNode;
+    }
+
     this.length--;
     return this;
   }
