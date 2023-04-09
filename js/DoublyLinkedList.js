@@ -98,6 +98,10 @@ export class DoublyLinkedList {
     }
   }
 
+  reverse() {
+    // TODO: implement reverse method here
+  }
+
   toString() {
     return JSON.stringify(this);
   }
