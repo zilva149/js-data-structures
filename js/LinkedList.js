@@ -86,6 +86,24 @@ export class LinkedList {
     }
   }
 
+  reverse() {
+    let prevNode = null;
+    let currNode = this.head;
+    let nextNode = null;
+    this.tail = this.head;
+
+    while (currNode) {
+      nextNode = currNode.next;
+      currNode.next = prevNode;
+      prevNode = currNode;
+      currNode = nextNode;
+    }
+
+    this.head = prevNode;
+
+    return this;
+  }
+
   toString() {
     return JSON.stringify(this);
   }
