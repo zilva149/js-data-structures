@@ -20,7 +20,6 @@ tree.insert(16);
 tree.insert(9);
 tree.insert(2);
 console.log(tree);
-console.log(JSON.stringify(traverse(tree.root)));
 
 function traverse(node) {
   const tree = { node: node.value };
