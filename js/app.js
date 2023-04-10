@@ -12,6 +12,21 @@ const hashTable = new HashTable(100);
 const linkedList = new LinkedList(0);
 const doublyLinkedList = new DoublyLinkedList(0);
 const myQueue = new Queue();
-const binarySearchTree = new BinarySearchTree();
+const tree = new BinarySearchTree();
 
-console.log(binarySearchTree);
+tree.insert(7);
+tree.insert(14);
+tree.insert(16);
+tree.insert(9);
+tree.insert(2);
+console.log(tree);
+console.log(JSON.stringify(traverse(tree.root)));
+
+function traverse(node) {
+  const tree = { node: node.value };
+
+  tree.left = node.left === null ? null : traverse(node.left);
+  tree.right = node.right === null ? null : traverse(node.right);
+
+  return tree;
+}
