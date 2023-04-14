@@ -19,6 +19,8 @@ tree.insert(14);
 tree.insert(16);
 tree.insert(9);
 tree.insert(2);
+tree.insert(5);
+console.log(tree.breadthFirstSearch());
 console.log(tree);
 
 function traverse(node) {
