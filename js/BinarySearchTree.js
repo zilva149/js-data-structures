@@ -61,7 +61,7 @@ export class BinarySearchTree {
     // TODO: implement remove method
   }
 
-  breadthFirstSearch() {
+  BFS() {
     let currentNode = this.root;
     let list = [];
     let queue = [];
@@ -77,6 +77,60 @@ export class BinarySearchTree {
         queue.push(currentNode.right);
       }
     }
+
+    return list;
+  }
+
+  DFSInOrder() {
+    return this.traverseInOrder(this.root, []);
+  }
+
+  DFSPreOrder() {
+    return this.traversePreOrder(this.root, []);
+  }
+
+  DFSPostOrder() {
+    return this.traversePostOrder(this.root, []);
+  }
+
+  traverseInOrder(node, list) {
+    if (node.left) {
+      this.traverseInOrder(node.left, list);
+    }
+
+    list.push(node.value);
+
+    if (node.right) {
+      this.traverseInOrder(node.right, list);
+    }
+
+    return list;
+  }
+
+  traversePreOrder(node, list) {
+    list.push(node.value);
+
+    if (node.left) {
+      this.traversePreOrder(node.left, list);
+    }
+
+    if (node.right) {
+      this.traversePreOrder(node.right, list);
+    }
+
+    return list;
+  }
+
+  traversePostOrder(node, list) {
+    if (node.left) {
+      this.traversePostOrder(node.left, list);
+    }
+
+    if (node.right) {
+      this.traversePostOrder(node.right, list);
+    }
+
+    list.push(node.value);
 
     return list;
   }

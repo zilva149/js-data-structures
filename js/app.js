@@ -20,8 +20,11 @@ tree.insert(16);
 tree.insert(9);
 tree.insert(2);
 tree.insert(5);
-console.log(tree.breadthFirstSearch());
-console.log(tree);
+console.log(tree.BFS());
+console.log(tree.DFSInOrder());
+console.log(tree.DFSPreOrder());
+console.log(tree.DFSPostOrder());
+console.log(traverse(tree.root));
 
 function traverse(node) {
   const tree = { node: node.value };
